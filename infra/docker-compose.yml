@@ -1,0 +1,22 @@
+services:
+  postgres-standalone:
+    image: postgres:latest
+    container_name: postgres-standalone
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres-standalone:/var/lib/postgresql/data
+    networks:
+      - rabbit-network
+
+volumes:
+  postgres-standalone:
+
+networks:
+  rabbit-network:
+
